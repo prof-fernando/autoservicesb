@@ -20,4 +20,9 @@ public class ClienteService {
     public List<Cliente> buscarTodos(){
         return this.clienteRepository.findAll();
     }
+
+    public void delete(Long idCliente){
+        this.clienteRepository.deleteById(idCliente);
+    }
+
 }
