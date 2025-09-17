@@ -24,15 +24,15 @@ public class ClienteController {
 
     @PostMapping
     public void cadastrarNovoCliente(@RequestBody Cliente cliente) {
-        servico.salvar(c);
+        servico.salvar(cliente);
     }
 
     @PutMapping
-    public void cadastrarNovoCliente(@RequestBody Cliente cliente) {
-        servico.salvar(c);
+    public void atualizarCliente(@RequestBody Cliente cliente) {
+        servico.salvar(cliente);
     }
 
-    @DeleteMapping('/{idCliente}')
+    @DeleteMapping("/{idCliente}")
     public void cadastrarNovoCliente(@RequestParam Long idCliente) {
         servico.delete(idCliente);
     }
