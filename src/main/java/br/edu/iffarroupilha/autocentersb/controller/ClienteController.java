@@ -2,9 +2,7 @@ package br.edu.iffarroupilha.autocentersb.controller;
 
 import br.edu.iffarroupilha.autocentersb.model.Cliente;
 import br.edu.iffarroupilha.autocentersb.model.service.ClienteService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +29,24 @@ public class ClienteController {
     @GetMapping("/list")
     public List<Cliente> listarCliente(){
         return servico.buscarTodos();
+    }
+
+    @PostMapping
+    public void cadastrarNovoCliente(
+             @RequestParam String nome,
+             @RequestParam String cpf,
+             @RequestParam String telefone
+             ){
+        Cliente c = new Cliente();
+        c.setNome(nome);
+        c.setCpf(cpf);
+        c.setTelefone(telefone);
+        servico.salvar(c);
+
+        System.out.println(
+                "Cadastrando novo cliente: "
+                +
+                c.getIdCliente()
+        );
     }
 }
