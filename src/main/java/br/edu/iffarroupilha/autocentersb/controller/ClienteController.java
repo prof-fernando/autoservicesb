@@ -16,12 +16,12 @@ public class ClienteController {
         this.servico = servico;
     }
 
-
+    @CrossOrigin("http://localhost:4200")
     @GetMapping()
     public List<Cliente> listarCliente() {
         return servico.buscarTodos();
     }
-
+    @CrossOrigin("http://localhost:4200")
     @PostMapping
     public void cadastrarNovoCliente(@RequestBody Cliente cliente) {
         servico.salvar(cliente);
