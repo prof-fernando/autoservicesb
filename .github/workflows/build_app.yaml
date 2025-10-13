@@ -1,0 +1,20 @@
+#script para automacao no github
+name: AutoService SB construcao e teste
+
+on:
+  push:
+    branches:
+      - "main"
+  jobs:
+  construr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar o codigo
+        uses: actions/checkout@v4
+      - name: gerar o jar
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'oracle'
+      - name: executar maven
+        run: mvn clean install
