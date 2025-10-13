@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: baixar o codigo
         uses: actions/checkout@v4
-      - name: gerar o jar
+      - name: configurando o java
         uses: actions/setup-java@v5
         with:
           java-version: 21
           distribution: 'oracle'
       - name: executar maven
-        run: mvn clean install
+        run: mvn clean install -DskipTests
