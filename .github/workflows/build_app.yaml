@@ -18,3 +18,5 @@ jobs:
           distribution: 'oracle'
       - name: executar maven
         run: mvn clean install -DskipTests
+      - name: gerando docker
+        run: docker build -t proffernando/autoservicesb .
