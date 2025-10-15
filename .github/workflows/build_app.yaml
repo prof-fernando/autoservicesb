@@ -24,3 +24,11 @@ jobs:
         run: docker login -u ${{secrets.DOCKER_USER}} -p '${{secrets.DOCKER_PASS}}'
       - name: publicar a imagem
         run: docker push proffernando/autoservicesb
+  instalacao_aws:
+    runs-on: self-hosted
+    needs: construir
+    steps:
+      - name: pegar imagem
+        run: sudo socker pull proffernando/autoservicesb
+      - name: executar container
+        run: sudo docker run -t containerapp proffernando/autoservicesb
