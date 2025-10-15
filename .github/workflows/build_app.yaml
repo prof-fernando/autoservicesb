@@ -20,5 +20,5 @@ jobs:
         run: mvn clean install -DskipTests
       - name: gerando docker
         run: docker build -t proffernando/autoservicesb .
-      - name: login dockerhub
+      - name: login dockerHub
         run: docker login -u ${{secrets.DOCKER_USER}} -p '${{secrets.DOCKER_PASS}}'
