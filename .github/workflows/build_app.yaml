@@ -22,3 +22,5 @@ jobs:
         run: docker build -t proffernando/autoservicesb .
       - name: login dockerHub
         run: docker login -u ${{secrets.DOCKER_USER}} -p '${{secrets.DOCKER_PASS}}'
+      - name: publicar a imagem
+        run: docker push proffernando/autoservicesb
