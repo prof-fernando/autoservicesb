@@ -31,4 +31,5 @@ jobs:
       - name: pegar imagem
         run: sudo docker pull proffernando/autoservicesb
       - name: executar container
-        run: sudo docker run -t containerapp proffernando/autoservicesb
+#        run: sudo docker run -t proffernando/autoservicesb
+        run: sudo docker compose up -d

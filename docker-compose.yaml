@@ -1,0 +1,14 @@
+services:
+  autoservicesb_api:
+    image: proffernando/autoservicesb
+    ports:
+      - "80:8080"
+    depends_on:
+      - servico_banco
+
+  servico_banco:
+    image: postgres:17.2
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: autoservicesb-senha
+      POSTGRES_DB: autoservicesb
