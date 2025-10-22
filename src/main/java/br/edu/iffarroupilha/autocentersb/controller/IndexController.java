@@ -19,7 +19,7 @@ public class IndexController {
     @CrossOrigin("http://localhost:4200")
     @GetMapping()
     public String listarCliente() {
-        return "deu certo !";
+        return "deu";
     }
     @CrossOrigin("http://localhost:4200")
     @PostMapping
