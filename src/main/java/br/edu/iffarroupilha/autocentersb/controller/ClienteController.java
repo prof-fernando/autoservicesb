@@ -36,4 +36,9 @@ public class ClienteController {
     public void cadastrarNovoCliente(@RequestParam Long idCliente) {
         servico.delete(idCliente);
     }
+
+    @GetMapping("/teste")
+    public String teste(){
+        return "Deu certo CI/CD";
+    }
 }
