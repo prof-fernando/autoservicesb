@@ -3,6 +3,10 @@ services:
     image: proffernando/autoservicesb
     ports:
       - "80:8080"
+    environment:
+      SPRING_DATASOURCE_URL: ${BD_URL}
+      SPRING_DATASOURCE_USERNAME: ${BD_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${BD_PASSWORD}
     depends_on:
       - servico_banco
     networks:
