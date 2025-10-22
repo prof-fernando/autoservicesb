@@ -1,14 +1,31 @@
+# docker-compose.yml
 services:
   autoservicesb_api:
-    image: proffernando/autoservicesb
+    image: proffernando/autoservicesb:latest
     ports:
-      - "80:8080"
+      - "80:8080"          # cuidado: porta 80 do servidor pode já estar em uso
+    environment:
+      SPRING_DATASOURCE_URL: ${BD_URL}
+      SPRING_DATASOURCE_USERNAME: ${BD_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${BD_PASSWORD}
     depends_on:
       - servico_banco
+    networks:
+      - appnet
 
   servico_banco:
     image: postgres:17.2
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: autoservicesb-senha
-      POSTGRES_DB: autoservicesb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/home/ubuntu/dados
+    networks:
+      - appnet
+
+volumes:
+  pgdata:
+
+networks:
+  appnet:

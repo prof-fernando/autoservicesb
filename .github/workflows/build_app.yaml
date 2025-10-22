@@ -28,8 +28,10 @@ jobs:
     runs-on: self-hosted
     needs: construir
     steps:
+      - name: pegar fonte
+        uses: actions/checkout@v4
       - name: pegar imagem
         run: sudo docker pull proffernando/autoservicesb
       - name: executar container
 #        run: sudo docker run -t proffernando/autoservicesb
-        run: sudo docker compose up -d
+        run: sudo docker compose up -d --remove-orphans
