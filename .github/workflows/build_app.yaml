@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
       - name: pegar imagem
         run: sudo docker pull proffernando/autoservicesb
-      - name: escrever arquivo .env
+      - name: escrever arquivo de .env
         run: |
           cat > .env << 'EOF'
           BD_URL=${{ secrets.BD_URL }}
