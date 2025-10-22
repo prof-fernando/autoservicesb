@@ -30,6 +30,18 @@ jobs:
     steps:
       - name: pegar imagem
         run: sudo docker pull proffernando/autoservicesb
+      - name: baixar o dockercompose
+        uses: actions/checkout@v4
+      - name: gerar arquivo de env
+        run: |
+          cat > .env << 'EOF'
+          BD_URL=${{secrets.BD_URL}}
+          BD_USERNAME=${{secrets.BD_USERNAME}}
+          BD_PASSWORD=${{secrets.BD_PASSWORD}}
+          POSTGRES_USER=${{secrets.PG_USER}}
+          POSTGRES_PASSWORD=${{secrets.PG_PASS}}
+          POSTGRES_DB=${{secrets.PG_BD}}
+          EOF
       - name: executar container
 #        run: sudo docker run -t proffernando/autoservicesb
-        run: sudo docker -e BD_USERNAME=${secrets.BD_USERNAME} -e BD_PASSWORD=${secrets.bd_PASSWORD} -e BD_URL=${secrets.BD_URL}  compose up -d
+        run: sudo docker compose up -d --remove-orphans
