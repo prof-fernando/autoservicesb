@@ -28,20 +28,8 @@ jobs:
     runs-on: self-hosted
     needs: construir
     steps:
-      - name: pegar fonte
-        uses: actions/checkout@v4
       - name: pegar imagem
         run: sudo docker pull proffernando/autoservicesb
-      - name: escrever arquivo de .env
-        run: |
-          cat > .env << 'EOF'
-          BD_URL=${{ secrets.BD_URL }}
-          BD_USERNAME=${{ secrets.BD_USERNAME }}
-          BD_PASSWORD=${{ secrets.BD_PASSWORD }}
-          POSTGRES_USER=postgres
-          POSTGRES_PASSWORD=autoservicesb-senha
-          POSTGRES_DB=autoservicesb
-          EOF
       - name: executar container
 #        run: sudo docker run -t proffernando/autoservicesb
-        run: sudo docker compose up -d --remove-orphans
+        run: sudo docker -e BD_USERNAME=${secrets.BD_USERNAME} -e BD_PASSWORD=${secrets.bd_PASSWORD} -e BD_URL=${secrets.BD_URL}  compose up -d
