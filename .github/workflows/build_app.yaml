@@ -32,6 +32,16 @@ jobs:
         uses: actions/checkout@v4
       - name: pegar imagem
         run: sudo docker pull proffernando/autoservicesb
+      - name: escrever arquivo .env
+        run: |
+          cat > .env << 'EOF'
+          BD_URL=${{ secrets.BD_URL }}
+          BD_USERNAME=${{ secrets.BD_USERNAME }}
+          BD_PASSWORD=${{ secrets.BD_PASSWORD }}
+          POSTGRES_USER=postgres
+          POSTGRES_PASSWORD=autoservicesb-senha
+          POSTGRES_DB=autoservicesb
+          EOF
       - name: executar container
 #        run: sudo docker run -t proffernando/autoservicesb
         run: sudo docker compose up -d --remove-orphans
